@@ -1,7 +1,7 @@
 """Create Order use case — orquestra domínio + infra."""
 from decimal import Decimal
 from ..dtos.order_dtos import CreateOrderInput, OrderOutput
-from ...domain.result import Result, ok, fail
+from ...domain.result import ok, fail
 from ...domain.entities.order import Order, OrderItem
 from ...domain.repositories.order_repository import OrderRepository
 
@@ -10,7 +10,7 @@ class CreateOrderUseCase:
     def __init__(self, repository: OrderRepository):
         self._repository = repository
 
-    async def execute(self, input_data: CreateOrderInput) -> Result:
+    async def execute(self, input_data: CreateOrderInput):
         if not input_data.items:
             return fail("Pedido deve ter pelo menos um item")
 
